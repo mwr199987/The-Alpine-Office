@@ -21,29 +21,16 @@
 
     .hero{position:relative;min-height:100svh;overflow:hidden;background:var(--ivory)}
     .hero-image{position:absolute;inset:0;background-image:url("../images/hero.webp");background-position:center 64%;background-size:cover}
-    .site-header{position:absolute;z-index:20;top:0;left:0;display:flex;width:100%;align-items:flex-start;justify-content:space-between;padding:31px clamp(23px,3.2vw,52px)}
+    .site-header{position:absolute;z-index:20;top:0;left:0;display:flex;width:100%;align-items:flex-start;padding:31px clamp(23px,3.2vw,52px)}
     .wordmark{display:inline-flex;width:max-content;flex-direction:column;align-items:center;text-transform:uppercase}
     .wordmark strong{font-family:var(--serif);font-size:15px;font-weight:400;letter-spacing:.28em;line-height:1}
     .wordmark small{margin-top:8px;font-size:6px;letter-spacing:.25em;line-height:1}
-    .menu-button{display:flex;width:42px;height:32px;align-items:center;justify-content:center;border:0;background:transparent;cursor:pointer}
-    .menu-button span,.menu-button span:before,.menu-button span:after{display:block;width:16px;height:1px;background:var(--ink)}
-    .menu-button span{position:relative}
-    .menu-button span:before,.menu-button span:after{content:"";position:absolute;left:0}
-    .menu-button span:before{top:-4px}.menu-button span:after{top:4px}
     .hero-content{position:relative;z-index:2;display:flex;min-height:100svh;width:min(700px,calc(100% - 42px));margin:0 auto;padding:11vh 0 6vh;flex-direction:column;align-items:center;justify-content:center;text-align:center}
     .hero-content h1{max-width:650px;margin:0;font-family:var(--serif);font-size:clamp(40px,4.15vw,62px);font-weight:400;letter-spacing:-.025em;line-height:1.06;text-wrap:balance}
     .hairline{width:48px;height:1px;margin:25px 0 23px;background:rgba(36,37,35,.38)}
     .hero-support{margin:0 0 29px;font-size:8px;font-weight:500;letter-spacing:.2em;line-height:1.7;text-transform:uppercase}
     .button{display:inline-flex;min-width:190px;min-height:45px;align-items:center;justify-content:center;border:1px solid var(--ink);padding:12px 22px;background:var(--ink);color:#fff;cursor:pointer;font-size:8px;font-weight:500;letter-spacing:.23em;line-height:1.4;text-align:center;text-transform:uppercase;transition:background-color 180ms ease,color 180ms ease}
     .button:hover,.button:focus-visible{background:transparent;color:var(--ink)}
-
-    .nav-overlay{position:fixed;z-index:80;inset:0;display:grid;visibility:hidden;place-items:center;background:var(--ivory);opacity:0;pointer-events:none;transition:opacity 180ms ease,visibility 180ms ease}
-    .nav-overlay.is-open{visibility:visible;opacity:1;pointer-events:auto}
-    .nav-close{position:absolute;top:31px;right:clamp(23px,3.2vw,52px);width:42px;height:42px;border:0;background:transparent;cursor:pointer;font-family:var(--serif);font-size:30px;font-weight:300}
-    .nav-brand{position:absolute;top:35px;left:clamp(23px,3.2vw,52px);font-family:var(--serif);font-size:12px;letter-spacing:.22em;text-transform:uppercase}
-    .nav-links{display:flex;flex-direction:column;align-items:center;gap:22px}
-    .nav-links a,.nav-links button{border:0;background:transparent;cursor:pointer;font-family:var(--serif);font-size:clamp(35px,4vw,54px);font-weight:400;letter-spacing:-.02em}
-    .nav-links a:hover,.nav-links button:hover{font-style:italic}
 
     .shell{width:min(1180px,calc(100% - 56px));margin-inline:auto}
     .kicker{margin:0;color:var(--soft-ink);font-size:8px;font-weight:500;letter-spacing:.27em;line-height:1.5;text-transform:uppercase}
@@ -83,6 +70,15 @@
     .distinction-copy{padding-top:12px}
     .distinction-copy p{margin:0;font-family:var(--serif);font-size:20px;line-height:1.75}
     .distinction-copy p+p{margin-top:22px}
+
+    .founder{padding-block:clamp(105px,13vw,175px);background:#e7e3dc}
+    .founder-inner{display:grid;grid-template-columns:minmax(250px,.72fr) 1.28fr;gap:12vw;align-items:start}
+    .founder h2{max-width:490px;margin:31px 0 0;font-family:var(--serif);font-size:clamp(48px,5.8vw,78px);font-weight:400;letter-spacing:-.04em;line-height:1.03}
+    .founder-copy{max-width:650px;padding-top:9px}
+    .founder-copy>p{margin:0;font-family:var(--serif);font-size:20px;line-height:1.75}
+    .founder-copy>p+p{margin-top:22px}
+    .founder-signoff{margin-top:38px!important;font-family:var(--sans)!important;font-size:8px!important;font-weight:500;letter-spacing:.2em;line-height:1.8!important;text-transform:uppercase}
+    .founder-signoff span{color:var(--soft-ink);font-size:7px}
 
     .membership{display:flex;min-height:760px;align-items:center;justify-content:center;padding:90px 28px;background:var(--ivory);text-align:center}
     .membership-inner{width:min(760px,100%)}
@@ -131,6 +127,7 @@
       .office-copy{min-height:680px;padding:80px 8vw}
       .distinction-grid{grid-template-columns:1fr;gap:60px}
       .distinction-copy{max-width:650px;padding-top:0}
+      .founder-inner{grid-template-columns:1fr;gap:55px}.founder-copy{padding-top:0}
       .site-footer{grid-template-columns:1fr;justify-items:center;padding-block:70px;text-align:center}
       .footer-meta{align-items:center}
     }
@@ -150,6 +147,7 @@
       .office-image{min-height:440px}.office-copy{min-height:650px;padding:70px 25px}
       .office-list{grid-template-columns:1fr}
       .distinction{padding-block:105px}.distinction h2{font-size:52px}
+      .founder{padding-block:100px}.founder h2{font-size:51px}
       .membership{min-height:680px;padding-inline:21px}.membership h2{font-size:55px}
       .form-row{grid-template-columns:1fr;gap:24px}.application-panel{padding-top:75px}
     }
