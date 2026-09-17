@@ -14,7 +14,9 @@ Open http://localhost:8000. The page, imagery, motion libraries and silent film 
 
 The redesign lives on `redesign/cinematic-homepage`. The production baseline is `abc172047ead04dfd0fed7218e3f25f7175624f7`.
 
-The existing GitHub integration reports **Cloudflare Workers Builds**, worker `muddy-sun-e521`. Preserve its current settings. The repository does not contain a Wrangler configuration or the account's preview-branch settings, so a Pages URL or preview deployment must not be assumed. Configure a non-production Workers build/preview for this branch before merging. Do not change the production branch or switch hosting providers to review this work.
+The existing GitHub integration uses **Cloudflare Workers Builds**, worker `muddy-sun-e521`. The confirmed review-branch settings are root `/`, build command `exit 0`, and deploy command `npx wrangler versions upload`. Preserve these settings: version upload creates a review version without promoting it to production.
+
+`wrangler.jsonc` declares the static asset directory and enables version preview URLs. `.assetsignore` allows only `index.html` and `assets/` to be uploaded, excluding Git metadata, configuration and review documentation. No Worker script or application build step is needed. The preview URL is reported in the successful Cloudflare build output; do not guess it. Keep the redesign on this branch until browser review and enquiry delivery checks are complete.
 
 To recover the former homepage, revert the redesign commit/PR. The original files and images remain in Git history.
 
