@@ -1,54 +1,39 @@
 # The Alpine Office
 
-The source code for The Alpine Office website.
+A static, cinematic homepage. No application framework or build step is required.
 
-## Repository structure
+## Review locally
 
-```text
-index.html
-assets/
-  css/styles.css
-  js/site.js
-  images/
-```
-
-The site uses plain HTML, CSS and JavaScript. It has no framework, package manager or build step.
-
-## Preview locally
-
-Open `index.html` directly in a browser, or run a local static server from the repository folder.
-
-```bash
+```sh
 python3 -m http.server 8000
 ```
 
-Then visit `http://localhost:8000`.
+Open http://localhost:8000. The page, imagery, motion libraries and silent film are all self-hosted. The complete page remains readable when JavaScript is disabled. Reduced-motion preference removes scroll choreography and autoplay.
 
-## Publish with GitHub Pages
+## Production and staging
 
-1. Upload these files to the root of a GitHub repository.
-2. Open the repository's **Settings**.
-3. Select **Pages**.
-4. Under **Build and deployment**, choose **Deploy from a branch**.
-5. Select the `main` branch and `/ (root)` folder, then save.
+The redesign lives on `redesign/cinematic-homepage`. The production baseline is `abc172047ead04dfd0fed7218e3f25f7175624f7`.
 
-GitHub will provide the published address after the first deployment completes.
+The existing GitHub integration reports **Cloudflare Workers Builds**, worker `muddy-sun-e521`. Preserve its current settings. The repository does not contain a Wrangler configuration or the account's preview-branch settings, so a Pages URL or preview deployment must not be assumed. Configure a non-production Workers build/preview for this branch before merging. Do not change the production branch or switch hosting providers to review this work.
 
-## Publish with Cloudflare Pages
+To recover the former homepage, revert the redesign commit/PR. The original files and images remain in Git history.
 
-Connect the repository to Cloudflare Pages and use these settings:
+## Enquiry delivery
 
-```text
-Framework preset: None
-Build command: Leave blank
-Build output directory: /
-```
+The previous form was a non-delivering visual preview. This redesign keeps that limitation explicit and does not display a false delivery confirmation.
 
-## Custom domain
+To enable delivery, add `data-endpoint="https://YOUR_VERIFIED_ENDPOINT"` to `form[data-enquiry]`. The endpoint must accept JSON by POST and return JSON `{ "accepted": true }` only after durable acceptance. A successful HTTP response alone is insufficient. It must validate input, rate-limit abuse, apply an origin policy and securely forward to the intended inbox/CRM. Never put credentials in this repository. Configure the actual destination and privacy information, then test real delivery before publishing. No server or Salesforce credentials have been invented.
 
-Add your domain in GitHub Pages or Cloudflare Pages, then follow the DNS records shown by that provider.
+The fields are `firstName`, `lastName`, `email`, `clientType`, `note`, and `consent`. No personal information is written to browser storage. Failed delivery retains the visitor's input. Native dialog supplies keyboard containment, Escape and return focus.
 
-## Membership form
+## Motion and media
 
-The membership form is currently a visual preview. It does not transmit applications. Connect it to Salesforce Web-to-Lead or another secure form endpoint before public launch.
+GSAP and ScrollTrigger 3.15.0 are vendored under `assets/js/vendor`; upstream license headers are retained. No remote font or animation CDN is required. CSS sticky handles the opening narrative; the libraries animate transforms and opacity without intercepting scroll.
 
+The film is silent, about 0.95 MB, and only loads when its scene is visible on desktop or explicitly played on mobile. Reduced motion and Save-Data disable automatic playback. Hidden tabs and closed scenes pause playback. Portrait mobile hero and responsive detail image reduce image transfer size.
+
+## Review documentation
+
+- `docs/HOMEPAGE-STORYBOARD.md`: scene intent, copy, assets and responsive behaviour.
+- `docs/ASSETS.md`: source provenance and remaining photography decisions.
+- `docs/REVIEW.md`: performed checks and outstanding device/deployment gates.

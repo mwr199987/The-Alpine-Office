@@ -4,66 +4,120 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#f3efe7">
-  <meta name="description" content="The Alpine Office is a private office for exceptional alpine travel. Independent advice, exceptional access and membership by application.">
-  <title>The Alpine Office | Exceptional Alpine Travel</title>
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="description" content="A private office for exceptional Alpine travel. We search widely, know personally and recommend selectively. Founded by Marcus Roberts.">
+  <meta property="og:title" content="The Alpine Office | Personally considered">
+  <meta property="og:description" content="The Alps offer endless choice. We don’t. Exceptional Alpine travel, personally considered.">
+  <meta property="og:type" content="website">
+  <title>The Alpine Office | Personally Considered Alpine Travel</title>
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preload" as="image" href="assets/images/arrival-mobile.webp" media="(max-width: 700px)" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/images/arrival.webp" media="(min-width: 701px)" fetchpriority="high">
   <link rel="stylesheet" href="assets/css/styles.css">
+  <script src="assets/js/vendor/gsap.min.js" defer></script>
+  <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="assets/js/site.js" defer></script>
 </head>
 <body>
-  <main>
-    <section class="hero" id="top" aria-labelledby="hero-title">
-      <div class="hero-image" aria-hidden="true"></div>
-      <header class="site-header">
-        <a class="wordmark" href="#top" aria-label="The Alpine Office home"><strong>The Alpine Office</strong><small>Exceptional alpine travel. All seasons.</small></a>
-      </header>
-      <div class="hero-content">
-        <h1 id="hero-title">A private office for<br>exceptional alpine travel.</h1>
-        <div class="hairline" aria-hidden="true"></div>
-        <p class="hero-support">Independent advice. Exceptional access. Membership by application.</p>
-        <button class="button" type="button" data-apply>Apply for membership</button>
+  <a class="skip-link" href="#office">Skip to the Office</a>
+  <header class="site-header" data-header>
+    <a class="wordmark" href="#top" aria-label="The Alpine Office, home">The Alpine Office<span>Personally considered</span></a>
+    <nav aria-label="Main navigation"><a href="#office">The Office</a><a href="#alps">The Alps</a><a class="nav-enquire" href="#conversation" data-apply>Enquire <span aria-hidden="true">↗</span></a></nav>
+  </header>
+  <main id="main">
+    <section class="arrival" id="top" aria-labelledby="arrival-title">
+      <div class="arrival-stage">
+        <picture class="arrival-image"><source media="(max-width: 700px)" srcset="assets/images/arrival-mobile.webp"><img src="assets/images/arrival.webp" width="1672" height="941" alt="Warm chalet windows above a snow-covered Alpine valley at dusk" fetchpriority="high"></picture>
+        <div class="arrival-shade" aria-hidden="true"></div>
+        <div class="arrival-copy"><p class="eyebrow">A private Alpine travel office</p><h1 id="arrival-title">The Alpine<br><em>Office.</em></h1><p class="arrival-caption">Exceptional Alpine travel,<br>personally considered.</p></div>
+        <div class="arrival-bottom"><span>Exceptional places. A personal point of view.</span><a href="#possibility">Discover the Office <span aria-hidden="true">↓</span></a></div>
       </div>
     </section>
 
-    <section class="statement shell" id="about" aria-labelledby="statement-title">
-      <p class="kicker">The Alpine Office</p>
-      <h2 id="statement-title">Travel should be remembered.<span>Not researched.</span></h2>
-      <div class="statement-copy"><p>The Alpine Office exists for families, principals, executive assistants and family offices who value judgement over endless choice. We bring continuity, context and a considered point of view to every season in the Alps.</p></div>
-    </section>
-
-    <section class="seasons shell" aria-labelledby="seasons-title">
-      <div class="section-intro"><p class="kicker">Four seasons</p><h2 id="seasons-title">The Alps, beautifully timed.</h2></div>
-      <div class="season-grid">
-        <figure class="season-card"><div class="season-image" role="img" aria-label="An Alpine village in winter"></div><figcaption><h3>Winter</h3><p>Private winter journeys, considered entirely.</p></figcaption></figure>
-        <figure class="season-card"><div class="season-image" role="img" aria-label="An Alpine landscape in spring"></div><figcaption><h3>Spring</h3><p>The mountains before the crowds.</p></figcaption></figure>
-        <figure class="season-card"><div class="season-image" role="img" aria-label="An Alpine meadow and lake in summer"></div><figcaption><h3>Summer</h3><p>A different rhythm at altitude.</p></figcaption></figure>
-        <figure class="season-card"><div class="season-image" role="img" aria-label="An Alpine valley in autumn"></div><figcaption><h3>Autumn</h3><p>Quiet places, beautifully timed.</p></figcaption></figure>
+    <section class="possibility" id="possibility" aria-labelledby="possibility-title">
+      <div class="possibility-stage">
+        <div class="possibility-images" aria-hidden="true">
+          <figure class="possibility-image image-one"><img src="assets/images/winter.webp" width="768" height="1200" alt="" loading="lazy" decoding="async"></figure>
+          <figure class="possibility-image image-two"><img src="assets/images/arrival-640.webp" width="640" height="360" alt="" loading="lazy" decoding="async"></figure>
+          <figure class="possibility-image image-three"><img src="assets/images/summer.webp" width="900" height="1125" alt="" loading="lazy" decoding="async"></figure>
+          <figure class="possibility-image image-four"><img src="assets/images/morning-detail-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async"></figure>
+        </div>
+        <div class="possibility-copy"><p class="eyebrow">An entire world. One considered answer.</p><h2 id="possibility-title"><span>The Alps offer</span><em>endless</em><span>choice.</span></h2></div>
+        <span class="scene-index" aria-hidden="true">01 &nbsp; / &nbsp; Perspective</span>
       </div>
     </section>
 
-    <section class="office" id="office" aria-labelledby="office-title">
-      <div class="office-image" role="img" aria-label="A panoramic view across the Alps"></div>
-      <div class="office-copy"><p class="kicker kicker-light">What we do</p><h2 id="office-title">One office.<br>Every detail held.</h2><p>Members retain an independent source of judgement across their alpine travel. We source, compare, coordinate and remember, without turning the relationship into a catalogue.</p>
-        <ul class="office-list"><li>Private chalet sourcing</li><li>Exceptional hotels</li><li>Summer alpine travel</li><li>Considered itineraries</li><li>Private transport</li><li>Concierge</li><li>Trusted recommendations</li><li>Long term planning</li></ul>
+    <section class="reduction" aria-labelledby="reduction-title">
+      <p class="eyebrow" data-reveal>A different point of view</p><h2 id="reduction-title" data-reveal>We don’t.</h2><div class="fine-rule" aria-hidden="true"></div><p class="reduction-copy" data-reveal>We search widely, know personally<br>and recommend selectively.</p><p class="small-note" data-reveal>Fewer options. A clearer answer.</p>
+    </section>
+
+    <section class="judgement" aria-label="What considered travel means">
+      <article class="place scene-dark" aria-labelledby="place-title">
+        <div class="place-media"><img src="assets/images/film-poster.webp" width="1280" height="720" alt="A timber and stone chalet set above a quiet snowy valley" loading="lazy" decoding="async"><video muted playsinline loop preload="none" poster="assets/images/film-poster.webp" data-video data-src="assets/video/arrival.mp4" aria-label="A quiet approach to an Alpine chalet"></video></div>
+        <div class="scene-gradient" aria-hidden="true"></div>
+        <div class="place-copy" data-reveal><p class="eyebrow">01 / Judgement</p><h2 id="place-title">The right<br><em>place.</em></h2><p>A beautiful property is only the beginning.<br>The question is whether it is right for you.</p></div>
+        <button class="film-control" type="button" data-film aria-label="Play chalet film"><span data-film-label>Play film</span> <span aria-hidden="true" data-film-icon>▷</span></button>
+      </article>
+
+      <article class="week editorial shell" aria-labelledby="week-title">
+        <div class="editorial-copy" data-reveal><p class="eyebrow">02 / Perspective</p><h2 id="week-title">The right<br><em>week.</em></h2><p>The same village can feel entirely different a week later.</p><p class="body-small">Snow, sunshine, school holidays, the rhythm of a resort. Knowing when matters as much as knowing where.</p><span class="editorial-footnote">Place is only half the story.</span></div>
+        <figure class="week-image image-reveal"><img src="assets/images/winter.webp" width="768" height="1200" alt="An old stone village under fresh snow in a quiet Alpine valley" loading="lazy" decoding="async"><figcaption>The mountains, at their own pace.</figcaption></figure>
+      </article>
+
+      <article class="details-scene" aria-labelledby="details-title">
+        <figure class="details-image image-reveal"><img src="assets/images/morning-detail.webp" srcset="assets/images/morning-detail-800.webp 800w, assets/images/morning-detail.webp 1536w" sizes="(max-width: 700px) 100vw, 65vw" width="1536" height="1024" alt="Coffee, a book and ski gloves beside a chalet window overlooking snowy fir trees" loading="lazy" decoding="async"></figure>
+        <div class="details-copy" data-reveal><p class="eyebrow">03 / Understanding</p><h2 id="details-title">The right<br><em>details.</em></h2><p>The instructor your children trust.<br>The room that catches the morning light.<br>The things you shouldn’t have to ask twice.</p></div>
+      </article>
+    </section>
+
+    <section class="office shell" id="office" aria-labelledby="office-title">
+      <div class="section-topline"><p class="eyebrow">The Office</p><span class="small-note">Independent thinking. Personal attention.</span></div>
+      <h2 id="office-title" data-reveal>A private office for<br>exceptional <em>Alpine travel.</em></h2>
+      <div class="office-bottom"><p class="office-aside">A little less searching.<br>A lot more certainty.</p><div class="office-prose" data-reveal><p>We plan exceptional time in the mountains for a small number of private clients. We search widely, recommend selectively and arrange the details around the people travelling.</p><p>No catalogue. No endless shortlist. A considered recommendation, and someone personally accountable for it.</p><p class="body-small">We keep the Office small so the relationship stays personal. It begins with a conversation.</p></div></div>
+    </section>
+
+    <section class="founder" id="about" aria-labelledby="founder-title"><div class="founder-inner shell">
+      <figure class="founder-image"><img src="assets/images/marcus-roberts.webp" width="548" height="612" alt="Marcus Roberts, founder of The Alpine Office" loading="lazy" decoding="async"><figcaption>Marcus Roberts <span>Founder</span></figcaption></figure>
+      <div class="founder-copy" data-reveal><p class="eyebrow">Personal by design</p><h2 id="founder-title">Judgement<br>is <em>personal.</em></h2><p>Marcus Roberts has spent more than a decade advising private clients on travel throughout the Alps.</p><p class="body-small">The Office brings that experience into a closer, more continuous relationship. Someone who knows the places, understands the people travelling and stands behind the recommendation.</p><p class="founder-signoff">A familiar name. A considered point of view.</p></div>
+    </div></section>
+
+    <section class="memory shell" aria-labelledby="memory-title"><p class="eyebrow" data-reveal>A relationship that remembers</p><h2 id="memory-title" data-reveal>The better we know you,<br>the less you need<br>to <em>tell us.</em></h2><div class="memory-bottom"><span class="memory-mark" aria-hidden="true">Every season,<br>a little more understood.</span><p data-reveal>The room arrangement that worked. The transfer that felt too long. The instructor you would ask for again.<br><br>We carry those details forward, so your next trip begins where the last conversation left off.</p></div></section>
+
+    <section class="alps" id="alps" aria-labelledby="alps-title">
+      <div class="alps-heading shell"><p class="eyebrow">The Alps, in every season</p><h2 id="alps-title" data-reveal>Beyond a place.<br>Beyond <em>a season.</em></h2></div>
+      <div class="alps-layout shell"><figure class="summer-image image-reveal"><img src="assets/images/summer.webp" width="900" height="1125" alt="A clear mountain lake beneath high rocky peaks and summer meadows" loading="lazy" decoding="async"><figcaption>There is more than one way to be in the mountains.</figcaption></figure>
+        <div class="alps-copy"><p class="alps-intro" data-reveal">Winter may bring you here.<br>The mountains give you<br>every reason to return.</p>
+          <div class="countries" aria-label="Our Alpine perspective">
+            <details open><summary><span>01</span> France <span class="detail-sign" aria-hidden="true">+</span></summary><p>From the great linked ski areas to the quieter corners worth knowing.</p></details>
+            <details><summary><span>02</span> Switzerland <span class="detail-sign" aria-hidden="true">+</span></summary><p>Grand mountain hotels, remarkable landscapes and villages with a rhythm of their own.</p></details>
+            <details><summary><span>03</span> Austria <span class="detail-sign" aria-hidden="true">+</span></summary><p>A deeply personal tradition of hospitality, on and beyond the slopes.</p></details>
+            <details><summary><span>04</span> Italy <span class="detail-sign" aria-hidden="true">+</span></summary><p>Long lunches, dramatic mountains and a different pace of Alpine life.</p></details>
+          </div><p class="alps-note">Snow gives way to wildflowers.<br>The same care, a different season.</p>
+        </div>
       </div>
+      <figure class="season-divider"><img src="assets/images/hero.webp" width="1774" height="887" alt="Soft evening light across an open Alpine valley" loading="lazy" decoding="async"><figcaption>Time in the mountains. Thoughtfully yours.</figcaption></figure>
     </section>
 
-    <section class="distinction shell" aria-labelledby="distinction-title">
-      <div class="distinction-grid"><h2 id="distinction-title">The office comes first.</h2><div class="distinction-copy"><p>The Alpine Office is a source of judgement, memory and access. Membership is simply how a limited number of clients retain it.</p><p>Over time, the office learns what matters to each family, removing repetition and making every journey more instinctive, personal and calm.</p></div></div>
+    <section class="conversation scene-dark" id="conversation" aria-labelledby="conversation-title">
+      <picture><source media="(max-width: 700px)" srcset="assets/images/arrival-mobile.webp"><img src="assets/images/arrival.webp" width="1672" height="941" alt="The warm glow of a chalet above village lights at evening" loading="lazy" decoding="async"></picture><div class="conversation-shade" aria-hidden="true"></div>
+      <div class="conversation-copy" data-reveal><p class="eyebrow">The Alpine Office</p><h2 id="conversation-title">You don’t need<br>more choice.<br><em>You need the right choice.</em></h2><a href="#enquiry" class="text-link" data-apply>Begin a conversation <span aria-hidden="true">↗</span></a></div>
     </section>
-
-    <section class="founder" aria-labelledby="founder-title"><div class="founder-inner shell"><div><p class="kicker">Founder</p><h2 id="founder-title">Judgement is personal.</h2></div><div class="founder-copy"><p>Founded by Marcus Roberts, The Alpine Office is built on more than a decade spent advising private clients on exceptional travel throughout the Alps.</p><p>Marcus created the office to offer something more personal and continuous: independent judgement, trusted access and an understanding of how each family prefers to travel.</p><p class="founder-signoff">Marcus Roberts<br><span>Founder, The Alpine Office</span></p></div></div></section>
-
-    <section class="membership" id="membership" aria-labelledby="membership-title"><div class="membership-inner"><p class="kicker">Membership</p><h2 id="membership-title">Limited by design.</h2><p>The Alpine Office works with a limited number of families and organisations each year. Every application is considered individually. Membership is offered where the relationship is the right fit.</p><button class="button" type="button" data-apply>Apply for membership</button><span class="membership-note">Membership by application</span></div></section>
-
-    <footer class="site-footer"><a class="wordmark footer-wordmark" href="#top"><strong>The Alpine Office</strong><small>Exceptional alpine travel</small></a><p>Exceptional Alpine Travel.</p><div class="footer-meta"><span>© 2026 The Alpine Office</span><button type="button" data-apply>Membership by application</button></div></footer>
   </main>
+  <footer class="site-footer"><a class="wordmark" href="#top">The Alpine Office<span>Exceptional Alpine travel</span></a><p>Personally considered.<br>Season after season.</p><div><span>© <span data-year>2026</span> The Alpine Office</span><a href="#about">Meet the founder <span aria-hidden="true">↗</span></a></div></footer>
 
-  <div class="application-overlay" role="dialog" aria-modal="true" aria-labelledby="application-title" aria-hidden="true" data-application><button class="application-backdrop" type="button" aria-label="Close membership application" data-close></button><section class="application-panel"><button class="application-close" type="button" aria-label="Close membership application" data-close>×</button>
-    <div class="application-form"><p class="kicker">A private introduction</p><h2 id="application-title">Apply for membership.</h2><p class="application-intro">Tell us a little about how you travel and what you would value from a private alpine office. Every application is considered personally.</p>
-      <form><div class="form-row"><label><span>First name</span><input name="firstName" autocomplete="given-name" required></label><label><span>Last name</span><input name="lastName" autocomplete="family-name" required></label></div><label><span>Email address</span><input name="email" type="email" autocomplete="email" required></label><label><span>I am enquiring as</span><select name="clientType" required><option value="" selected disabled>Select one</option><option>Private client or family</option><option>Personal assistant or executive assistant</option><option>Family office</option><option>Travel adviser</option></select></label><label><span>What would you value from The Alpine Office?</span><textarea name="note" rows="4" required></textarea></label><label class="consent-row"><input type="checkbox" required><span>I am happy to be contacted privately about my application.</span></label><button class="button form-submit" type="submit">Request an introduction</button><p class="preview-note">Private preview: applications are not transmitted until your preferred inbox or Salesforce connection is enabled.</p></form>
+  <dialog class="application" id="enquiry" aria-labelledby="application-title" aria-describedby="application-intro">
+    <div class="application-panel"><button class="application-close" type="button" aria-label="Close enquiry" data-close autofocus>×</button><p class="eyebrow">A private introduction</p><h2 id="application-title">Let’s begin<br>with <em>you.</em></h2><p id="application-intro">Tell us a little about the time you would like to spend in the mountains. We can take it from there.</p>
+      <form data-enquiry novalidate>
+        <div class="form-row"><label>First name<input name="firstName" autocomplete="given-name" maxlength="100" required></label><label>Last name<input name="lastName" autocomplete="family-name" maxlength="100" required></label></div>
+        <label>Email address<input name="email" type="email" autocomplete="email" maxlength="254" required></label>
+        <label>I am enquiring as<select name="clientType" required><option value="" selected disabled>Select one</option><option>Private client or family</option><option>Personal or executive assistant</option><option>Family office</option><option>Travel adviser</option></select></label>
+        <label>What do you have in mind?<textarea name="note" rows="3" maxlength="5000" placeholder="The people, the place, the time of year. Or simply what matters to you." required></textarea></label>
+        <label class="consent-row"><input name="consent" type="checkbox" required><span>I am happy to be contacted privately about this enquiry.</span></label>
+        <div class="form-status" role="status" aria-live="polite" data-form-status></div>
+        <button class="submit-button" type="submit" data-submit>Review introduction <span aria-hidden="true">↗</span></button>
+        <p class="preview-note" data-preview-note>This is a private preview. Enquiries are not being sent yet.</p>
+      </form>
+      <noscript><p>This preview needs JavaScript to prepare the introduction. No enquiry has been sent.</p></noscript>
     </div>
-    <div class="application-success" aria-live="polite"><p class="kicker">Application prepared</p><h2>Thank you.</h2><p>The application experience is ready. Submission delivery will be connected before the site is launched publicly.</p><button class="button" type="button" data-close>Return to The Alpine Office</button></div>
-  </section></div>
-  <script src="assets/js/site.js"></script>
+  </dialog>
 </body>
 </html>
