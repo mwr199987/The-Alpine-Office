@@ -1,0 +1,5 @@
+# Upload only the public homepage and its assets, never repository metadata.
+*
+!index.html
+!assets/
+!assets/**

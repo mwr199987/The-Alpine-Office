@@ -1,0 +1,42 @@
+{
+  "browser": "webkit",
+  "viewports": [
+    {
+      "width": 320,
+      "height": 10713,
+      "errors": []
+    },
+    {
+      "width": 390,
+      "height": 10521,
+      "errors": []
+    },
+    {
+      "width": 430,
+      "height": 10249,
+      "errors": []
+    },
+    {
+      "width": 768,
+      "height": 9102,
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "height": 9938,
+      "errors": []
+    },
+    {
+      "width": 1728,
+      "height": 10021,
+      "errors": []
+    }
+  ],
+  "checks": [
+    "Dialog validation, focus containment, Escape, focus return, backdrop, input retention and zero preview POSTs",
+    "Scroll reveals, live reduced motion, resize, mobile film opt-in, modal film pause and country disclosures",
+    "Locally intercepted delivery acceptance/rejection, input retention and duplicate prevention",
+    "Readable no-JavaScript and animation-library failure fallbacks"
+  ],
+  "violations": []
+}
