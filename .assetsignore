@@ -3,3 +3,14 @@
 !index.html
 !assets/
 !assets/**
+
+# Inactive imagery and generated film from earlier design reviews.
+assets/video/
+assets/images/arrival*.webp
+assets/images/film-poster.webp
+assets/images/morning-detail*.webp
+assets/images/hero.webp
+assets/images/winter.webp
+assets/images/spring.webp
+assets/images/summer.webp
+assets/images/autumn.webp

@@ -1,65 +1,41 @@
-# The Alpine Office: luxury-brand refinement
+# The Alpine Office: editorial refinement, second review
 
-Review branch: `refine/luxury-brand-2026-09`. Built on the existing cinematic draft at `cabd12064a787aac97f82be3b19af981bd6e130d`. Production baseline: `c36cdd32c6c65acae9d739ac44f7f951ddc15e1d`.
+Branch: `refine/luxury-brand-2026-09`. Production baseline: `c36cdd32c6c65acae9d739ac44f7f951ddc15e1d`. This pass follows Marcus's feedback that the scrolling, transitions and layout still lacked the assurance of an established luxury brand.
 
-## Brief and audit
+## Diagnosis and changes
 
-The brief is precision, consistent art direction, a recognisable identity and believable personal judgement. Visual stature must be supported by actual experience. No invented clients, awards, affiliations, property availability or operating history.
+The previous draft used too much separate scroll distance for the opening slogans, then repeated large headings beside large images. Generated property imagery also weakened the intended sense of a real, knowledgeable travel office.
 
-The live production homepage and the Cloudflare cinematic preview were inspected on 29 September 2026. Their source was compared locally, including the two later production commits that added grain, entrance animation, parallax and season-card tilt. Their useful motion intent is carried through the cinematic draft; grain and card tilt are omitted as part of the restraint pass. Production is the original all-season membership homepage; the cinematic work remains a separate draft. This distinction matters: the refinement preserves the draft's strongest work rather than starting a third concept.
-
-| Element | Finding | Decision |
+| Element | Current treatment | Purpose |
 | --- | --- | --- |
-| Proposition | A private office, personal accountability and a continuing relationship are strong. | Preserve the positioning, founder and memory sections. Make the practical service easier to understand. |
-| Opening | Twilight image, asymmetric typography and a quiet navigation already provide a strong arrival. | Retain image and composition; improve type consistency and mobile legibility. |
-| Imagery | The four-image opening repeats hero, detail and summer assets later on. The same hero closes the page. | Use two marginal landscapes in the choice sequence. Remove the extra panorama and repeated photographic closing. |
-| Typography | System font stacks produce materially different metrics and italics across devices. Over-tight tracking compounds this. | Self-host a consistent regular/italic serif and a quiet sans. Moderate tracking and refresh scroll geometry after fonts load. |
-| Credibility | The real founder is useful evidence. Most service copy remains abstract. | Add an explicitly illustrative Office note that explains a concrete planning trade-off. It is not a case study or testimonial. |
-| Identity | The typographic wordmark is restrained but the generic initial/favicon and scattered numbering have little continuity. | Add a small Office notation device, shared with the favicon. Keep the wordmark as the principal identity. |
-| Interaction | Native scrolling, dialog and film policy are sensible. Mobile reveals and long sticky scenes slow reading. | Keep subtle desktop choreography; shorten the opening sequence and make mobile body copy continuously visible. |
-| Technical detail | Previous draft had no browser QA. | Validate six widths, motion changes, fallbacks, dialogue, disclosures and simulated delivery. Keep launch gaps explicit. |
-
-## Art direction
-
-The main image is expansive and atmospheric. Supporting images move towards the lived experience: a quiet village, the morning inside a chalet, a summer landscape. Founder imagery supplies real human accountability. Cold exterior light is balanced with natural timber and warm ivory. Avoid exaggerated orange, stock luxury props, glossy cards, faux handwritten signatures and invented endorsements.
-
-Generated chalet stills and film remain atmospheric concepts with recorded provenance. They are not named or offered as properties. Creating another fictional chalet would add little and weaken the credibility objective. This pass therefore creates exact vector identity assets and typography assets, and improves the composition of existing photography. The commercial photography brief is below.
+| Arrival | Real Alpine evening photograph, centred masthead, one large heading and a quieter italic line | Lead with the place and proposition rather than repeat a large logo. |
+| Opening transition | One desktop sticky scene, 135 svh total; photograph settles into a 3.5 vw ivory frame across 35 svh of scroll, then releases | A clear photographic-to-editorial transition with no wheel interception or content fading out on scroll. |
+| Mobile arrival | Ordinary 100 svh scene, deliberate portrait crop, no pinned scroll or copy reveal | Preserve reading and movement on touch devices. |
+| Introduction | One two-column spread joins “The Alps offer endless choice” with “We don't” | Remove the separate reduction screen and fading collage. Make the proposition readable without a long staged reveal. |
+| Place | Generous framed interior photograph; index, heading and reasoning sit below it | Let the photograph breathe and give the service a practical interpretation. |
+| Week | Smaller portrait village composition and offset copy | Vary scale and rhythm rather than repeat the same full-screen scene. |
+| Details | Landscape snow texture and narrower copy | A different visual proportion; replace with a real guest/service detail when commissioning. |
+| Evidence | Existing founder, practical Office note and service explanation | Preserve authentic accountability; no invented stature or client evidence. |
+| Closing | “It begins with you” on ivory, a concise invitation and fine-rule link | End on the relationship rather than another campaign slogan or photograph. |
 
 ## Design system
 
-| Role | Specification | Rule |
-| --- | --- | --- |
-| Paper | Ivory `#f3efe7`, lighter paper `#f8f5ef` | Use quiet continuous surfaces. |
-| Type | Ink `#242523`, muted `#62635c` | Keep supporting text readable, not faint decoration. |
-| Dark scenes | Charcoal / muted Alpine green | Reserve for the place scene, the Alpine perspective and closing. |
-| Rule | `#cbc6bc`, 1 px | Define margins and editorial hierarchy, not cards. |
-| Display | Self-hosted Baskervville regular and italic | Familiarity with the earlier Baskerville direction; consistent across operating systems. Italic marks emphasis rather than every paragraph. |
-| Utility / body | Self-hosted Source Sans 3 regular | One sans for navigation, annotations and practical text. No font-service account or external font request. |
-| Section spacing | `--space-section: clamp(80px, 9vw, 140px)` | Shared rhythm across the main editorial sections. |
-| Page margin | `--gutter: clamp(24px, 5vw, 90px)` | Match image edges, copy and fine rules. |
-| Identity device | `office-mark.svg`: open register, two vertical strokes and a point | Appears at the opening footnote, Office note and final introduction. Do not repeat in every section. |
-| Office note | Rule, reference, question, reasoning and conclusion | Always distinguish an illustration from evidence of an actual client result. |
-| Interaction | Native anchors, disclosures and dialog; restrained transform/opacity | No scroll interception, bespoke cursor, loader or animated ornament. |
-| Mobile | Portrait hero, single-column editorial scenes, readable body text without reveal | Mobile is a deliberate composition rather than a scaled desktop. |
+- Ivory `#f3efe7`, paper `#f8f5ef`, ink `#242523`, muted copy `#62635c`, rule `#cbc6bc`.
+- One self-hosted serif, Baskervville, with italic used selectively. One sans, Source Sans 3, for reading and annotation.
+- Shared page gutter `clamp(24px, 5vw, 100px)`; shared section rhythm `clamp(90px, 10vw, 160px)`; 1480 px maximum editorial width.
+- Typography scales by role rather than making every headline equally large. Photographs alternate generous landscape, narrow portrait and quieter landscape formats.
+- Fixed masthead changes to ivory after 64 px of native scroll, keeping it readable as the frame appears.
+- One motion system: measured entry on desktop, 18 px text rise, 3.5% photographic settling. Body copy remains readable on mobile. Reduced motion removes all choreography and resets the opening frame.
+- Standard anchors, native disclosures and native enquiry dialogue. No loader, custom cursor, scroll interception, card tilt, grain layer or new framework.
 
-Open font files have their original upstream OFL licences included. The Adobe catalog lookup did not reliably resolve the intended family; these are independently sourced open fonts, not Adobe kit assets.
+## Photography and restraint
 
-## Photography brief for commercial use
+Five individually sourced real photographs now replace all visible generated/inherited travel imagery. Optimised WebPs are served locally with responsive sources; credit, licence and source details are in ASSETS.md. They are atmospheric placeholders, not offered inventory. The founder image and existing positioning are retained.
 
-Commission or license a small coherent set rather than accumulating unrelated stock:
-1. A real Alpine arrival at blue hour, landscape master and a deliberately composed portrait alternate. Leave calm space at left for the identity. A slow, stable approach film can share this framing.
-2. An actual morning/detail image at a property Marcus knows, with evidence of use and natural window light.
-3. A real village/access context, supporting practical resort judgement rather than a generic mountain view.
-4. An updated real founder portrait only if needed; retain the present authentic portrait until a better one exists.
+The generated film is removed from the document. Its media policy and the unused collage/reduction styles and animations are removed. Inactive legacy assets are excluded from upload. A commissioned real film can later replace a suitable photographic scene without rebuilding the page.
 
-Require documented commercial website rights, a natural colour treatment, subtle highlights, believable architecture and appropriate crops. Do not use stock preview watermarks in the delivered site. Retained generated concepts are clearly recorded in the asset register; no unlicensed stock purchase was made.
+This improves visual discipline; stock images cannot create exclusive access, operating history or commercial credibility. Real experience and coherent commissioned photography must ultimately support the brand's appearance.
 
-## Restraint pass
+## Review boundary
 
-Removed two collage images, the additional panorama, the repeated closing hero, redundant slogan copy and unused panorama CSS. Shortened the sticky sequence and reduction scene. Kept the service structure and art direction already agreed. No new carousel, card grid, scrolling trick or framework.
-
-The illustrative Office note is the one new content component. Its purpose is to show the practical reasoning the private-office promise otherwise only states.
-
-## Production boundary
-
-No merge, Worker promotion, production deploy command, domain change, hosting migration or delivery endpoint configuration is authorised by this review work. The original main commit remains the rollback baseline. Production approval should follow visual review and resolution of the launch gaps recorded in REVIEW.md.
+Continue using draft PR #4 and Cloudflare's version-preview workflow. No main write, merge, Worker promotion, domain change or live enquiry endpoint is authorised by this work. Marcus's visual approval, physical iPhone review and verified enquiry delivery remain required before launch.

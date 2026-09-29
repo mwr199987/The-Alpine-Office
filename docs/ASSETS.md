@@ -1,35 +1,33 @@
-# Asset register
+# Active photography register: real-image review, 29 September 2026
 
-| File | Source | Use / qualification |
-| --- | --- | --- |
-| hero.webp, winter.webp, spring.webp, summer.webp, autumn.webp | Unchanged production repository | Existing approved visual direction; no unverified country or property labels added |
-| arrival.webp, arrival-mobile.webp, arrival-640.webp, arrival-960.webp | User's `Twilight Chalet Over a Snowy Alpine Valley.png` | Generated concept supplied earlier by Marcus. Desktop, art-directed mobile and smaller derivatives. Atmospheric imagery; not evidence of an available property |
-| film-poster.webp, video/arrival.mp4 | User's `Chalet_in_snowy_French_Alps_20260916105136.mp4` | Eight-second generated chalet concept; recompressed silent H.264 with faststart. Opening is a stronger still, film is used in the right-place section |
-| marcus-roberts.webp | Portrait embedded in `The_Alpine_Office_Investor_Proposal_v2.pdf` | Real founder photograph supplied for the earlier proposal; extracted at 548 × 612, displayed at a modest editorial size |
-| morning-detail.webp, morning-detail-800.webp | Built-in image generation during this redesign | New 1536 × 1024 photographic concept. Coffee, book and ski gloves beside a snowy chalet window. Not presented as an identified real property |
-| favicon.svg | Original code asset | Simple Alpine initial in established cream and charcoal |
+All travel photographs visible in the current review are real photographic placeholders from Unsplash. Their individual source pages label them free under the Unsplash License and identify a camera. The real founder portrait is retained. No generated still or generated film is referenced by the page.
 
-The other proposal photographs were only 133–168 pixels wide. They were rejected rather than enlarged into visibly pixelated assets.
+These photographs illustrate atmosphere and composition. The chalet interior is not identified as an offered property, an inspected property or a client booking. The winter-light source does not establish a particular resort, so the page does not name one. Commissioned or directly licensed property photography remains the preferred final art direction.
 
-## Morning-detail generation prompt
+| Active files | Photographer | Verified source page | Role |
+| --- | --- | --- | --- |
+| alpine-dusk.webp, alpine-dusk-960.webp, alpine-dusk-mobile.webp | Simon Spring | https://unsplash.com/photos/snowy-mountain-landscape-at-sunrise-with-dramatic-clouds-Vlo2HiNCYvY | Hero: Appenzell/Alpstein at evening, as described by the photographer. The automatically generated page title says sunrise; the photographer's own description says evening. |
+| chalet-interior.webp, chalet-interior-960.webp | Valentin DUCRETTET | https://unsplash.com/photos/luxurious-wooden-chalet-interior-with-dining-and-living-areas-gdhAPf_kZ14 | Real chalet interior, used as an atmospheric placeholder without a property name or availability claim. |
+| zermatt-village.webp, zermatt-village-960.webp | Franck Ridel | https://unsplash.com/photos/wooden-chalets-nestled-on-a-snowy-mountainside-72ehzxwCZIw | Real village texture, Zermatt as stated by the photographer. |
+| winter-light.webp, winter-light-960.webp | Livio Raschle | https://unsplash.com/photos/snowy-mountain-landscape-with-ski-tracks-at-sunrise-ZmXpPwmuWw4 | Snow texture and evening atmosphere. The photographer describes sunset; no resort is asserted. |
+| dolomites-lake.webp, dolomites-lake-960.webp | Taru Goyal | https://unsplash.com/photos/a-view-of-a-mountain-lake-surrounded-by-trees-SKUug8qitlg | Lago di Braies, Dolomites: summer perspective. |
+| marcus-roberts.webp | User supplied | Extracted from The_Alpine_Office_Investor_Proposal_v2.pdf during the previous pass | Authentic founder photograph. |
 
-Use case: photorealistic-natural. Create a single exceptionally realistic editorial photograph for The Alpine Office luxury travel website. Landscape 3:2 composition. Quiet observed morning inside an authentic Alpine chalet. Close foreground at left and centre: a simple handmade ivory porcelain cup of black coffee on a slightly rumpled natural flax linen cloth on a timeworn oak window seat, an open book with no legible text and a pair of leather ski gloves at the far edge. A large timber-framed window occupies the right half, looking out across fresh snow and mature fir trees, soft distant mountain ridge, cold muted daylight. Interior gently warm, exterior cool natural whites, no oversaturated orange. Tactile pores in timber, plausible porcelain and coffee surface, subtle signs of real use, imperfectly arranged, expensive hospitality editorial photographed on medium format 50mm lens. Sharp main subject with realistic gentle depth of field. Calm and intimate, a private lived-in moment, not a staged advertising vignette. No people, no logos, no text, no fantasy mountain peaks, no candles, no champagne, no artificial bloom, no dramatic god rays, no excessive steam, no render appearance. The output is a photographic concept asset, not a website screenshot.
+License checked on 29 September 2026: https://unsplash.com/license. It permits download, modification and commercial use. No Unsplash+ subscription content was selected. Photographer credits and source links are recorded here even though the standard licence does not require attribution. Stock photography is a temporary composition choice, not evidence of exclusivity or a property relationship.
 
-## Production photography
+## Optimisation and replacement slots
 
-The design can be reviewed with these supplied/generated assets. For the final commercial site, prefer a licensed real arrival film and two or three editorial photographs from properties Marcus knows personally. Avoid implying that a generated chalet is an actual recommended or bookable property. Confirm rights to all inherited photographs before launch.
+Each photograph has a 1920 px and 960 px WebP derivative. The hero also has a deliberately cropped 900 × 1200 portrait alternate. There are no external image requests or random image feeds. The desktop hero is approximately 235 kB; the mobile hero is approximately 128 kB. Supporting images load lazily and use responsive srcsets.
 
-## September refinement assets
+Replace like for like when commissioning:
+- Hero: blue-hour or evening Alpine landscape, calm central copy area, landscape and portrait compositions.
+- Place: a real property Marcus knows, generous living space, observed natural light, no manufactured luxury props.
+- Week: village/access detail with texture and context, not another grand panorama.
+- Details: a lived-in guest moment or small service detail. The current snow photograph is a temporary tonal image; a commissioned human/detail photograph would tell this story better.
+- Summer: a quiet Alpine landscape supporting the year-round proposition.
 
-| File | Source | Use / qualification |
-| --- | --- | --- |
-| office-mark.svg | Original vector drawing in this repository | A small Office notation device: open register, vertical strokes and point. Exact SVG; no generated pixels or claim of trademark clearance. |
-| favicon.svg | Updated original vector | Matching Office notation in ivory and ink. |
-| fonts/baskervville-regular.woff2, baskervville-italic.woff2 | Fontsource @fontsource/baskervville 5.2.5, Latin subsets | Self-hosted, unmodified open fonts. Original authors' licence from google/fonts/ofl/baskervville/OFL.txt accompanies the files. |
-| fonts/source-sans-regular.woff2 | Fontsource @fontsource/source-sans-3 5.2.9, Latin subset | Self-hosted, unmodified open font. Original Adobe licence from adobe-fonts/source-sans release/LICENSE.md accompanies the file. |
+Original generated and inherited files remain in Git history/the working repository for provenance, but are excluded from this version's upload through .assetsignore. In particular, the former generated arrival stills, morning stills and arrival film are inactive.
 
-The three webfonts total 67,656 bytes. They add consistent metrics and legibility without external font-service dependencies. No Adobe font kit was created.
+## Identity and typography
 
-The opening now uses winter and autumn at the margins. Summer and the morning detail appear only in their own editorial scenes. The panorama and repeated photographic closing are removed from the document; original assets remain in Git for future justified use.
-
-No new generated property image or stock purchase was needed for this refinement. Real property photography rights remain a commercial launch gate. Review screenshots in docs/review are development evidence and are excluded from static deployment by .assetsignore.
+The original Office notation SVG and favicon are retained. Baskervville regular/italic and Source Sans 3 Latin subsets remain self-hosted. Their upstream OFL licences accompany the files. No Adobe font kit, proprietary font purchase or external font request is used.

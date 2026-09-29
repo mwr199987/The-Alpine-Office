@@ -1,53 +1,50 @@
-# Review status: 29 September 2026
+# Current review status: second refinement, 29 September 2026
 
-Branch: `refine/luxury-brand-2026-09`. Current production baseline: `c36cdd32c6c65acae9d739ac44f7f951ddc15e1d`. The branch builds on the earlier cinematic draft and accounts for the later production motion commits.
+Branch: `refine/luxury-brand-2026-09`. Production baseline: `c36cdd32c6c65acae9d739ac44f7f951ddc15e1d`. This review supersedes the first refinement's screenshots and motion/media checks.
 
-## Complete in this pass
+## Completed
 
-- Repository and live production/draft audit, including mobile production-source rendering.
-- Focused art direction and a documented design system.
-- Consistent self-hosted typography, original SVG Office notation and matching favicon.
-- Simpler image sequence, clearer service copy, an illustrative planning note, retained real founder and a quieter closing.
-- Native dialog focus wrap, no-JavaScript introduction fallback and refresh after fonts load.
-- Restraint pass, responsive visual inspection and reproducible functional checks.
+- Five real photographic placeholders, source pages and licence checks, responsive WebP derivatives and a portrait hero crop.
+- A centred opening, one photographic frame transition, a combined introduction and varied editorial proportions.
+- Removal of the fading collage, separate reduction screen and generated film. All visible travel photography is real; inactive inherited/generated imagery is excluded from upload.
+- Existing self-hosted typography, founder, Office note, service explanation and native enquiry handling retained.
+- Visual inspection of complete desktop/mobile compositions, the hero, details, founder, Office, closing and actual opening transition.
 
-## Browser evidence
+## Executed browser checks
 
-Both Chrome and Playwright WebKit passed the same six-width run:
+Chrome and Playwright's headless Linux WebKit passed the same run:
 
-| Width | Layout | Image/font loading | JS errors | Automated WCAG 2 A/AA and 2.1 AA checks |
+| Width | Horizontal/heading overflow | Images/fonts | JS errors observed | Automated WCAG 2 A/AA and 2.1 AA checks |
 | --- | --- | --- | --- | --- |
-| 320 px | No horizontal or heading overflow | Passed | None observed | No violations reported |
-| 390 px | No horizontal or heading overflow | Passed | None observed | No violations reported |
-| 430 px | No horizontal or heading overflow | Passed | None observed | No violations reported |
-| 768 px | No horizontal or heading overflow | Passed | None observed | No violations reported |
-| 1440 px | No horizontal or heading overflow | Passed | None observed | No violations reported |
-| 1728 px | No horizontal or heading overflow | Passed | None observed | No violations reported |
+| 320 px | None | Loaded | None | No violations |
+| 390 px | None | Loaded | None | No violations |
+| 430 px | None | Loaded | None | No violations |
+| 768 px | None | Loaded | None | No violations |
+| 1440 px | None | Loaded | None | No violations |
+| 1728 px | None | Loaded | None | No violations |
 
-Viewport checks use reduced motion for consistent complete-page inspection. Separate tests exercise normal motion, resizing and live preference changes. Automated checks do not establish full WCAG conformance.
+Both engines passed:
+- Native dialogue validation, forward Tab containment, Escape, focus return, backdrop dismissal and input retention.
+- Open-dialogue automated accessibility checks and zero preview POSTs.
+- Actual scroll-driven hero frame progression, masthead contrast state and visible hero copy.
+- Desktop reveals completing, live reduced-motion changes resetting the frame and keeping copy visible.
+- Ordinary unpinned mobile layout, continuously visible mobile copy and resize without overflow.
+- Native country disclosures.
+- Locally intercepted delivery acceptance/rejection, retained fields on rejected delivery and duplicate prevention. Strict `accepted: true` remains required.
+- Readable no-JavaScript and animation-library-failure fallbacks.
 
-Both engines also passed:
-- Invalid-field handling; preview submission without a POST or false delivery acknowledgement.
-- Forward Tab cycling, Escape, focus return, backdrop close and retained input.
-- Open-dialog axe check with no reported violations.
-- Desktop reveal completion and live reduced-motion reset.
-- Reduced-motion film pause; mobile film requires explicit opt-in; dialog pauses film.
-- Resize without overflow and native country disclosures.
-- Locally intercepted acceptance/rejection and duplicate-submit prevention. Strict `accepted: true` is required; rejected delivery preserves fields.
-- Readable no-JavaScript and animation-library failure fallbacks.
+No real enquiry was sent. Delivery tests use synthetic data and a reserved .invalid URL intercepted locally. Viewport screenshots use reduced motion for deterministic visual inspection; separate checks exercise normal motion and preference changes. WebKit ran using the temporary Linux shared-library bundle and its headless engine; graphical host-library preflight was bypassed, but the full browser checks were executed. This is not physical Safari or a claim of full WCAG conformance.
 
-The first WebKit media test crashed because the local engine lacked its media/rendering dependencies. After those were supplied in temporary storage, the full run passed. This was not resolved by removing a website feature or weakening the test.
+Reports: [Chrome](review/chromium-report.json), [WebKit](review/webkit-report.json). Screenshots: [desktop hero](review/desktop-hero.jpg), [desktop transition](review/desktop-transition.jpg), [full desktop page](review/desktop-page.jpg), [mobile hero](review/mobile-hero.jpg). `scripts/qa-homepage.cjs` is restricted to a local test server and requires preview delivery to be disabled.
 
-Reports: [Chrome](review/chromium-report.json), [WebKit](review/webkit-report.json). Screenshots: [desktop](review/desktop-hero.jpg), [mobile](review/mobile-hero.jpg). The script is `scripts/qa-homepage.cjs`; it is restricted to a local test server and requires preview delivery to be disabled.
+Static checks passed: JavaScript syntax, diff whitespace, local paths/srcsets, fragment targets, unique IDs and one H1. No new framework or production service was added.
 
-Other completed checks: JavaScript syntax, diff whitespace, local paths, fragment targets, single H1, unique IDs and actual image dimensions. No real client data was used or real enquiry submitted.
+## Before production
 
-## Approval and commercial launch gaps
+1. Marcus's visual approval of the scrolling and composition.
+2. Physical iPhone/Safari review, including address-bar changes, real scroll feel and connection conditions.
+3. Decide final commissioned photography. The current stock placeholders have documented source/licence checks; they illustrate atmosphere, not available inventory. Prefer property-specific rights and permissions for eventual offered-property imagery.
+4. Supply the delivery destination and privacy information, then verify real durable enquiry delivery to the intended inbox/CRM. This preview still has no live endpoint.
+5. Measure deployed mobile performance if needed. No Lighthouse score is claimed.
 
-1. Marcus's visual approval of this refinement.
-2. A physical iPhone/Safari review, including address-bar viewport changes, scrolling feel and real connection conditions. Playwright WebKit is not physical Safari.
-3. Confirm commercial rights to inherited photographs; decide whether to replace atmospheric generated property concepts with real licensed/commissioned imagery.
-4. Provide the actual delivery destination and privacy information; connect and verify real enquiry acceptance in the intended inbox/CRM. No live endpoint currently exists.
-5. Measure real deployed mobile performance if required. No Lighthouse score is claimed.
-
-No main-branch write, merge, production Worker promotion, domain change or hosting migration was performed. Preview/review activity does not constitute production approval.
+No main write, merge, production Worker promotion, domain change or hosting migration was performed. Draft PR review and Cloudflare version previews do not constitute production approval.

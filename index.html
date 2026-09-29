@@ -10,8 +10,8 @@
   <meta property="og:type" content="website">
   <title>The Alpine Office | Personally Considered Alpine Travel</title>
   <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
-  <link rel="preload" as="image" href="assets/images/arrival-mobile.webp" media="(max-width: 700px)" fetchpriority="high">
-  <link rel="preload" as="image" href="assets/images/arrival.webp" media="(min-width: 701px)" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/images/alpine-dusk-mobile.webp" media="(max-width: 700px)" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/images/alpine-dusk.webp" media="(min-width: 701px)" fetchpriority="high">
   <link rel="preload" href="assets/fonts/baskervville-regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/baskervville-italic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/styles.css">
@@ -22,50 +22,39 @@
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header" data-header>
+    <span class="header-note">A private Alpine travel office</span>
     <a class="wordmark" href="#top" aria-label="The Alpine Office, home">The Alpine Office<span>Personally considered</span></a>
     <nav aria-label="Main navigation"><a href="#office">The Office</a><a href="#alps">The Alps</a><a class="nav-enquire" href="#conversation" data-apply>Enquire <span aria-hidden="true">↗</span></a></nav>
   </header>
   <main id="main" tabindex="-1">
     <section class="arrival" id="top" aria-labelledby="arrival-title">
-      <div class="arrival-stage">
-        <picture class="arrival-image"><source media="(max-width: 700px)" srcset="assets/images/arrival-mobile.webp"><img src="assets/images/arrival.webp" width="1672" height="941" alt="Warm chalet windows above a snow-covered Alpine valley at dusk" fetchpriority="high"></picture>
+      <div class="arrival-stage"><div class="arrival-frame">
+        <picture class="arrival-image"><source media="(max-width: 700px)" srcset="assets/images/alpine-dusk-mobile.webp"><img src="assets/images/alpine-dusk.webp" width="1920" height="1281" alt="Evening light over the snow-covered Appenzell landscape and Alpstein mountains" fetchpriority="high"></picture>
         <div class="arrival-shade" aria-hidden="true"></div>
-        <div class="arrival-copy"><p class="eyebrow">A private Alpine travel office</p><h1 id="arrival-title">The Alpine<br><em>Office.</em></h1><p class="arrival-caption">Exceptional Alpine travel,<br>personally considered.</p></div>
+        <div class="arrival-copy"><p class="eyebrow">Exceptional Alpine travel</p><h1 id="arrival-title"><span>The Alps.</span><em>Personally considered.</em></h1><p class="arrival-caption">A world of possibilities.<br>A recommendation that feels like you.</p></div>
         <div class="arrival-bottom"><span><span class="office-symbol" aria-hidden="true"></span> A personal point of view.</span><a href="#possibility">Discover the Office <span aria-hidden="true">↓</span></a></div>
-      </div>
+      </div></div>
     </section>
 
-    <section class="possibility" id="possibility" aria-labelledby="possibility-title">
-      <div class="possibility-stage">
-        <div class="possibility-images" aria-hidden="true">
-          <figure class="possibility-image image-one"><img src="assets/images/winter.webp" width="768" height="1200" alt="" loading="lazy" decoding="async"></figure>
-          <figure class="possibility-image image-two"><img src="assets/images/autumn.webp" width="800" height="1200" alt="" loading="lazy" decoding="async"></figure>
-        </div>
-        <div class="possibility-copy"><p class="eyebrow">An entire world. One considered answer.</p><h2 id="possibility-title"><span>The Alps offer</span><em>endless</em><span>choice.</span></h2></div>
-        <span class="scene-index" aria-hidden="true">The Office &nbsp; / &nbsp; A point of view</span>
-      </div>
-    </section>
-
-    <section class="reduction" aria-labelledby="reduction-title">
-      <p class="eyebrow" data-reveal>A different point of view</p><h2 id="reduction-title" data-reveal>We don’t.</h2><div class="fine-rule" aria-hidden="true"></div><p class="reduction-copy" data-reveal>We search widely, know personally<br>and recommend selectively.</p><p class="small-note" data-reveal>Fewer options. A clearer answer.</p>
+    <section class="possibility shell" id="possibility" aria-labelledby="possibility-title">
+      <div class="possibility-heading" data-reveal><p class="eyebrow">The art of choosing well</p><h2 id="possibility-title">The Alps offer<br><em>endless choice.</em></h2></div>
+      <div class="possibility-answer" data-reveal><span class="office-symbol" aria-hidden="true"></span><h3>We don’t.</h3><p>We search widely, know personally and recommend selectively.</p><p class="body-small">The right place, at the right time, with the details already considered. Fewer options. A clearer answer.</p><a class="editorial-link" href="#office">Discover the Office <span aria-hidden="true">↗</span></a></div>
     </section>
 
     <section class="judgement" aria-label="What considered travel means">
-      <article class="place scene-dark" aria-labelledby="place-title">
-        <div class="place-media"><img src="assets/images/film-poster.webp" width="1280" height="720" alt="A timber and stone chalet set above a quiet snowy valley" loading="lazy" decoding="async"><video muted playsinline loop preload="none" poster="assets/images/film-poster.webp" data-video data-src="assets/video/arrival.mp4" aria-label="A quiet approach to an Alpine chalet"></video></div>
-        <div class="scene-gradient" aria-hidden="true"></div>
-        <div class="place-copy" data-reveal><p class="eyebrow">01 / Judgement</p><h2 id="place-title">The right<br><em>place.</em></h2><p>A beautiful property is only the beginning.<br>We consider how you will actually live in it.</p></div>
-        <button class="film-control" type="button" data-film aria-label="Play chalet film"><span data-film-label>Play film</span> <span aria-hidden="true" data-film-icon>▷</span></button>
+      <article class="place shell" aria-labelledby="place-title">
+        <figure class="place-media image-reveal"><img src="assets/images/chalet-interior.webp" srcset="assets/images/chalet-interior-960.webp 960w, assets/images/chalet-interior.webp 1920w" sizes="90vw" width="1920" height="1280" alt="Natural afternoon light across a real timber chalet dining and living room" loading="lazy" decoding="async"><figcaption>A sense of place. A way of living.</figcaption></figure>
+        <div class="place-caption"><p class="eyebrow">01 / Place</p><h2 id="place-title" data-reveal">Somewhere<br><em>that feels like you.</em></h2><div class="place-copy" data-reveal><p>A beautiful property is only the beginning.</p><p class="body-small">We consider how you will actually live in it. The space to be together, the room to withdraw, and what lies beyond the front door.</p></div></div>
       </article>
 
       <article class="week editorial shell" aria-labelledby="week-title">
-        <div class="editorial-copy" data-reveal><p class="eyebrow">02 / Perspective</p><h2 id="week-title">The right<br><em>week.</em></h2><p>The same village can feel entirely different a week later.</p><p class="body-small">School dates, altitude, afternoon light and the rhythm of a resort. We weigh the week alongside the address.</p><span class="editorial-footnote">Place is only half the story.</span></div>
-        <figure class="week-image image-reveal"><img src="assets/images/winter.webp" width="768" height="1200" alt="An old stone village under fresh snow in a quiet Alpine valley" loading="lazy" decoding="async"><figcaption>The mountains, at their own pace.</figcaption></figure>
+        <div class="editorial-copy" data-reveal><p class="eyebrow">02 / Perspective</p><h2 id="week-title">A place has<br><em>its moment.</em></h2><p>The same village can feel entirely different a week later.</p><p class="body-small">School dates, altitude, afternoon light and the rhythm of a resort. We weigh the week alongside the address.</p><span class="editorial-footnote">Place is only half the story.</span></div>
+        <figure class="week-image image-reveal"><img src="assets/images/zermatt-village.webp" srcset="assets/images/zermatt-village-960.webp 960w, assets/images/zermatt-village.webp 1920w" sizes="(max-width: 700px) 90vw, 40vw" width="1920" height="1280" alt="Weathered timber chalets in the snow-covered village of Zermatt" loading="lazy" decoding="async"><figcaption>The mountains, at their own pace.</figcaption></figure>
       </article>
 
-      <article class="details-scene" aria-labelledby="details-title">
-        <figure class="details-image image-reveal"><img src="assets/images/morning-detail.webp" srcset="assets/images/morning-detail-800.webp 800w, assets/images/morning-detail.webp 1536w" sizes="(max-width: 700px) 100vw, 65vw" width="1536" height="1024" alt="Coffee, a book and ski gloves beside a chalet window overlooking snowy fir trees" loading="lazy" decoding="async"></figure>
-        <div class="details-copy" data-reveal><p class="eyebrow">03 / Understanding</p><h2 id="details-title">The right<br><em>details.</em></h2><p>The instructor your children trust.<br>The room that catches the morning light.<br>The things you shouldn’t have to ask twice.</p></div>
+      <article class="details-scene shell" aria-labelledby="details-title">
+        <figure class="details-image image-reveal"><img src="assets/images/winter-light.webp" srcset="assets/images/winter-light-960.webp 960w, assets/images/winter-light.webp 1920w" sizes="(max-width: 700px) 100vw, 60vw" width="1920" height="1280" alt="Tracks in fresh snow and the last light across a quiet mountain landscape" loading="lazy" decoding="async"></figure>
+        <div class="details-copy" data-reveal><p class="eyebrow">03 / Understanding</p><h2 id="details-title">The details.<br><em>Already understood.</em></h2><p>The instructor your children trust.<br>The room that catches the morning light.<br>The things you shouldn’t have to ask twice.</p></div>
       </article>
     </section>
 
@@ -88,7 +77,7 @@
 
     <section class="alps" id="alps" aria-labelledby="alps-title">
       <div class="alps-heading shell"><p class="eyebrow">The Alps, in every season</p><h2 id="alps-title" data-reveal>Beyond a place.<br>Beyond <em>a season.</em></h2></div>
-      <div class="alps-layout shell"><figure class="summer-image image-reveal"><img src="assets/images/summer.webp" width="900" height="1125" alt="A clear mountain lake beneath high rocky peaks and summer meadows" loading="lazy" decoding="async"><figcaption>There is more than one way to be in the mountains.</figcaption></figure>
+      <div class="alps-layout shell"><figure class="summer-image image-reveal"><img src="assets/images/dolomites-lake.webp" srcset="assets/images/dolomites-lake-960.webp 960w, assets/images/dolomites-lake.webp 1920w" sizes="(max-width: 700px) 90vw, 50vw" width="1920" height="1280" alt="The pale Dolomite peaks above Lago di Braies and its green summer forest" loading="lazy" decoding="async"><figcaption>There is more than one way to be in the mountains.</figcaption></figure>
         <div class="alps-copy"><p class="alps-intro" data-reveal">Winter may bring you here.<br>The mountains give you<br>every reason to return.</p>
           <div class="countries" aria-label="Our Alpine perspective">
             <details open><summary><span>01</span> France <span class="detail-sign" aria-hidden="true">+</span></summary><p>From the great linked ski areas to the quieter corners worth knowing.</p></details>
@@ -102,7 +91,7 @@
     </section>
 
     <section class="conversation scene-dark" id="conversation" aria-labelledby="conversation-title">
-      <div class="conversation-copy" data-reveal><span class="office-symbol" aria-hidden="true"></span><p class="eyebrow">A private introduction</p><h2 id="conversation-title">Your time in the Alps.<br><em>Personally considered.</em></h2><a href="#enquiry-fallback" class="text-link" data-apply>Begin a conversation <span aria-hidden="true">↗</span></a></div>
+      <div class="conversation-copy" data-reveal><span class="office-symbol" aria-hidden="true"></span><p class="eyebrow">A private introduction</p><h2 id="conversation-title">It begins<br>with <em>you.</em></h2><p class="conversation-intro">Tell us what matters.<br>We will take it from there.</p><a href="#enquiry-fallback" class="text-link" data-apply>Begin a conversation <span aria-hidden="true">↗</span></a></div>
     </section>
   </main>
   <footer class="site-footer"><a class="wordmark" href="#top">The Alpine Office<span>Exceptional Alpine travel</span></a><p>Personally considered.<br>Season after season.</p><div><span>© <span data-year>2026</span> The Alpine Office</span><a href="#about">Meet the founder <span aria-hidden="true">↗</span></a></div></footer>

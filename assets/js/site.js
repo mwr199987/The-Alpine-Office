@@ -10,15 +10,17 @@
   const year = $('[data-year]');
   if (year) year.textContent = new Date().getFullYear();
 
-  // Navigation changes only after the opening scene has passed.
+  // The masthead becomes paper as the opening photograph acquires its frame.
   const header = $('[data-header]');
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(([entry]) => header.classList.toggle('is-solid', !entry.isIntersecting), {
-      rootMargin: '-80px 0px 0px 0px'
-    }).observe($('.arrival'));
-  } else {
-    header.classList.add('is-solid');
+  let headerPending = false;
+  function updateHeader() {
+    header.classList.toggle('is-solid', window.scrollY > 64);
+    headerPending = false;
   }
+  window.addEventListener('scroll', () => {
+    if (!headerPending) { headerPending = true; requestAnimationFrame(updateHeader); }
+  }, { passive: true });
+  updateHeader();
 
   // A native dialog provides Escape, focus containment and inert background.
   const dialog = $('#enquiry');
@@ -40,7 +42,6 @@
     dialog.showModal();
     document.body.classList.add('locked');
     $('[data-close]').focus({ preventScroll: true });
-    syncFilm();
   }
   $$('[data-apply]').forEach(link => link.addEventListener('click', openEnquiry));
   $('[data-close]').addEventListener('click', () => dialog.close());
@@ -68,7 +69,6 @@
   dialog.addEventListener('close', () => {
     document.body.classList.remove('locked');
     opener?.focus({ preventScroll: true });
-    syncFilm();
   });
   form.addEventListener('submit', async event => {
     event.preventDefault();
@@ -107,46 +107,6 @@
     }
   });
 
-  // No video request until the scene is close. Mobile is explicitly opt-in.
-  const video = $('[data-video]');
-  const filmButton = $('[data-film]');
-  const filmLabel = $('[data-film-label]');
-  const filmIcon = $('[data-film-icon]');
-  let filmVisible = false;
-  let filmIntent = null; // null = automatic desktop policy; false = visitor paused.
-  let filmLoaded = false;
-  function updateFilmButton() {
-    const playing = !video.paused && !video.ended;
-    filmLabel.textContent = playing ? 'Pause film' : 'Play film';
-    filmIcon.textContent = playing ? 'Ⅱ' : '▷';
-    filmButton.setAttribute('aria-label', playing ? 'Pause chalet film' : 'Play chalet film');
-  }
-  function syncFilm() {
-    const allowed = !reduced.matches && !document.hidden && !dialog.open && filmVisible;
-    const requested = filmIntent === true || (filmIntent === null && !mobile.matches && !saveData);
-    if (!allowed || !requested) { video.pause(); return; }
-    if (!filmLoaded) { video.src = video.dataset.src; video.load(); filmLoaded = true; }
-    video.play().catch(() => { video.classList.remove('is-playing'); updateFilmButton(); });
-  }
-  video.addEventListener('playing', () => { video.classList.add('is-playing'); updateFilmButton(); });
-  video.addEventListener('pause', updateFilmButton);
-  video.addEventListener('error', () => {
-    video.classList.remove('is-playing'); filmIntent = false;
-    filmLabel.textContent = 'Film unavailable'; filmButton.disabled = true;
-  });
-  filmButton.addEventListener('click', () => {
-    filmIntent = video.paused;
-    syncFilm();
-  });
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(([entry]) => { filmVisible = entry.isIntersecting; syncFilm(); }, { threshold: .15 }).observe($('.place'));
-  } else {
-    filmVisible = true; filmIntent = false;
-  }
-  document.addEventListener('visibilitychange', syncFilm);
-  reduced.addEventListener('change', syncFilm);
-  mobile.addEventListener('change', syncFilm);
-
   // Progressive enhancement: failure to load either library leaves a complete page.
   if (!window.gsap || !window.ScrollTrigger) return;
   const { gsap, ScrollTrigger } = window;
@@ -157,29 +117,27 @@
     if (context.conditions.reduce) return;
     const desktop = context.conditions.desktop;
     document.documentElement.classList.add('motion-enabled');
+    // One opening gesture: the photograph settles into an ivory frame.
+    // The page keeps its native scroll position and text never disappears on scroll.
     if (desktop) {
-      const arrival = gsap.timeline({ scrollTrigger: { trigger: '.arrival', start: 'top top', end: 'bottom top', scrub: .65 } });
-      arrival.to('.arrival-image', { scale: 1.045, yPercent: 3, ease: 'none' }, 0)
-        .to('.arrival-copy', { yPercent: -14, opacity: .08, ease: 'none' }, 0)
-        .to('.arrival-shade', { opacity: .7, ease: 'none' }, 0);
-    }
-    const perspective = gsap.timeline({ scrollTrigger: {
-      trigger: '.possibility', start: 'top top', end: 'bottom bottom', scrub: desktop ? .65 : .25,
-      invalidateOnRefresh: true
-    }});
-    perspective.fromTo('.possibility-copy h2 em', { scale: .92 }, { scale: 1, duration: .35, ease: 'none' }, 0)
-      .to('.image-one', { yPercent: desktop ? -28 : -8, opacity: 0, scale: .88, duration: .55, ease: 'power1.inOut' }, .12)
-      .to('.image-two', { yPercent: desktop ? -22 : -5, opacity: 0, scale: .92, duration: .48, ease: 'power1.inOut' }, .34)
-      .to('.possibility-copy', { opacity: 0, y: -25, duration: .2, ease: 'none' }, .83);
-    if (desktop) $$('[data-reveal]').forEach(element => {
-      gsap.fromTo(element, { y: desktop ? 26 : 14, opacity: 0 }, { y: 0, opacity: 1, duration: .85, ease: 'power2.out', scrollTrigger: {
-        trigger: element, start: 'top 94%', once: true
+      gsap.fromTo('.arrival-copy > *', { y: 18, opacity: 0 }, {
+        y: 0, opacity: 1, stagger: .12, duration: 1.1, ease: 'power2.out'
+      });
+      gsap.to('.arrival-frame', { '--frame': '3.5vw', ease: 'none', scrollTrigger: {
+        trigger: '.arrival', start: 'top top', end: 'bottom bottom', scrub: .45
       }});
-    });
-    if (desktop) {
+      gsap.fromTo('.arrival-image img', { scale: 1.045 }, { scale: 1, ease: 'none', scrollTrigger: {
+        trigger: '.arrival', start: 'top top', end: 'bottom bottom', scrub: .45
+      }});
+      $$('[data-reveal]').forEach(element => {
+        gsap.fromTo(element, { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: .9, ease: 'power2.out', scrollTrigger: {
+          trigger: element, start: 'top 94%', once: true
+        }});
+      });
       $$('.image-reveal').forEach(element => {
-        gsap.fromTo(element, { clipPath: 'inset(7% 0% 7% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'none', scrollTrigger: {
-          trigger: element, start: 'top 95%', end: 'top 35%', scrub: .6
+        const image = $('img', element);
+        gsap.fromTo(image, { scale: 1.035 }, { scale: 1, ease: 'none', scrollTrigger: {
+          trigger: element, start: 'top bottom', end: 'bottom top', scrub: .6
         }});
       });
     }

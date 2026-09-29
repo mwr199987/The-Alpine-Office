@@ -8,7 +8,7 @@ A static, cinematic homepage. No application framework or build step is required
 python3 -m http.server 8000
 ```
 
-Open http://localhost:8000. The page, imagery, typefaces, motion libraries and silent film are all self-hosted. The complete page remains readable when JavaScript is disabled. Reduced-motion preference removes scroll choreography and autoplay.
+Open http://localhost:8000. The page, imagery, typefaces, motion libraries are all self-hosted. The complete page remains readable when JavaScript is disabled. Reduced-motion preference removes scroll choreography.
 
 ## Production and staging
 
@@ -28,11 +28,11 @@ To enable delivery, add `data-endpoint="https://YOUR_VERIFIED_ENDPOINT"` to `for
 
 The fields are `firstName`, `lastName`, `email`, `clientType`, `note`, and `consent`. No personal information is written to browser storage. Failed delivery retains the visitor's input. Native dialog supplies keyboard containment, Escape and return focus.
 
-## Motion and media
+## Motion and real photographic placeholders
 
-GSAP and ScrollTrigger 3.15.0 are vendored under `assets/js/vendor`; upstream license headers are retained. No remote font or animation CDN is required. CSS sticky handles the opening narrative; the libraries animate transforms and opacity without intercepting scroll.
+The current review uses five real photographs, served locally as responsive WebPs. Individual source pages, credits and the checked Unsplash licence are recorded in `docs/ASSETS.md`. No generated still or generated film is visible. Legacy unused image/film files are excluded from the upload.
 
-The film is silent, about 0.95 MB, and only loads when its scene is visible on desktop or explicitly played on mobile. Reduced motion disables playback and Save-Data disables automatic playback. Hidden tabs and closed scenes pause playback. Portrait mobile hero and responsive detail image reduce image transfer size.
+One desktop sticky opening settles a full-bleed photograph into an ivory frame across 35 svh of scroll, then releases. Mobile has no pinned scene or hidden copy. GSAP and ScrollTrigger are self-hosted; the page uses native scrolling. Reduced motion removes choreography. Missing libraries leave the complete page readable.
 
 ## Review documentation
 
