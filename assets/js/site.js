@@ -1,78 +1,149 @@
-(function(){
-  var body=document.body;
-  var application=document.querySelector('[data-application]');
-  var form=document.querySelector('.application-panel form');
-  var formView=document.querySelector('.application-form');
-  var success=document.querySelector('.application-success');
+/* The Alpine Office. Native document scrolling, progressively enhanced. */
+(() => {
+  'use strict';
+  const $ = (selector, root = document) => root.querySelector(selector);
+  const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const mobile = window.matchMedia('(max-width: 700px)');
+  const connection = navigator.connection;
+  const saveData = Boolean(connection?.saveData);
+  const year = $('[data-year]');
+  if (year) year.textContent = new Date().getFullYear();
 
-  function openApplication(){formView.style.display='block';success.classList.remove('is-visible');application.classList.add('is-open');application.setAttribute('aria-hidden','false');body.classList.add('locked');setTimeout(function(){document.querySelector('.application-close').focus()},230)}
-  function closeApplication(){application.classList.remove('is-open');application.setAttribute('aria-hidden','true');body.classList.remove('locked')}
+  // The masthead becomes paper as the opening photograph acquires its frame.
+  const header = $('[data-header]');
+  let headerPending = false;
+  function updateHeader() {
+    header.classList.toggle('is-solid', window.scrollY > 64);
+    headerPending = false;
+  }
+  window.addEventListener('scroll', () => {
+    if (!headerPending) { headerPending = true; requestAnimationFrame(updateHeader); }
+  }, { passive: true });
+  updateHeader();
 
-  document.querySelectorAll('[data-apply]').forEach(function(button){button.addEventListener('click',openApplication)});
-  document.querySelectorAll('[data-close]').forEach(function(button){button.addEventListener('click',closeApplication)});
-  form.addEventListener('submit',function(event){event.preventDefault();formView.style.display='none';success.classList.add('is-visible')});
-  document.addEventListener('keydown',function(event){if(event.key==='Escape')closeApplication()});
-
-  var reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  /* Parallax on hero and office images */
-  var parallaxEls=document.querySelectorAll('.hero-image,.office-image');
-  if(parallaxEls.length&&!reduceMotion){
-    var ticking=false;
-    function updateParallax(){
-      var scrollY=window.scrollY;
-      parallaxEls.forEach(function(el){
-        var rect=el.getBoundingClientRect();
-        var speed=0.18;
-        var within=rect.top<window.innerHeight&&rect.bottom>0;
-        if(within){el.style.transform='translate3d(0,'+(scrollY*speed*0.3)+'px,0)'}
-      });
-      ticking=false;
+  // A native dialog provides Escape, focus containment and inert background.
+  const dialog = $('#enquiry');
+  const form = $('[data-enquiry]');
+  const status = $('[data-form-status]');
+  const submit = $('[data-submit]');
+  let opener = null;
+  let sending = false;
+  let closePointerStartedOutside = false;
+  const endpoint = form.dataset.endpoint || ''; // Configure a verified HTTPS delivery endpoint before production.
+  const isLive = /^https:\/\//.test(endpoint) && !endpoint.includes('example.');
+  if (isLive) {
+    submit.innerHTML = 'Send introduction <span aria-hidden="true">↗</span>';
+    $('[data-preview-note]').textContent = 'Your details will only be used to respond to this enquiry.';
+  }
+  function openEnquiry(event) {
+    event?.preventDefault();
+    opener = event?.currentTarget || document.activeElement;
+    dialog.showModal();
+    document.body.classList.add('locked');
+    $('[data-close]').focus({ preventScroll: true });
+  }
+  $$('[data-apply]').forEach(link => link.addEventListener('click', openEnquiry));
+  $('[data-close]').addEventListener('click', () => dialog.close());
+  // Keep the keyboard cycle predictable across native-dialog implementations.
+  dialog.addEventListener('keydown', event => {
+    if (event.key !== 'Tab') return;
+    const controls = $$('button, input, select, textarea, a[href]', dialog)
+      .filter(control => !control.disabled && control.getClientRects().length);
+    const first = controls[0];
+    const last = controls[controls.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault(); last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault(); first.focus();
     }
-    window.addEventListener('scroll',function(){
-      if(!ticking){window.requestAnimationFrame(updateParallax);ticking=true}
-    },{passive:true});
-    updateParallax();
-  }
-
-  /* Scroll-triggered section reveals */
-  var revealEls=document.querySelectorAll('[data-reveal]');
-  if(revealEls.length&&'IntersectionObserver' in window){
-    var observer=new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if(entry.isIntersecting){
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
+  });
+  dialog.addEventListener('pointerdown', event => {
+    const rect = dialog.getBoundingClientRect();
+    closePointerStartedOutside = event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom;
+  });
+  dialog.addEventListener('click', event => {
+    if (event.target === dialog && closePointerStartedOutside) dialog.close();
+    closePointerStartedOutside = false;
+  });
+  dialog.addEventListener('close', () => {
+    document.body.classList.remove('locked');
+    opener?.focus({ preventScroll: true });
+  });
+  form.addEventListener('submit', async event => {
+    event.preventDefault();
+    if (sending) return;
+    status.classList.remove('is-error');
+    if (!form.reportValidity()) return;
+    if (!isLive) {
+      status.textContent = 'Your introduction is ready to review. This preview does not send or save your details. No enquiry has been submitted.';
+      status.scrollIntoView({ block: 'nearest', behavior: reduced.matches ? 'instant' : 'smooth' });
+      return;
+    }
+    sending = true;
+    submit.disabled = true;
+    submit.textContent = 'Sending…';
+    status.textContent = '';
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15000);
+    try {
+      const payload = Object.fromEntries(new FormData(form));
+      const response = await fetch(endpoint, {
+        method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload), signal: controller.signal, credentials: 'omit'
       });
-    },{threshold:0.15,rootMargin:'0px 0px -60px 0px'});
-    revealEls.forEach(function(el){observer.observe(el)});
-  }else{
-    revealEls.forEach(function(el){el.classList.add('is-visible')});
-  }
-
-  /* Staggered delay for season cards */
-  document.querySelectorAll('.season-card').forEach(function(card,i){
-    card.style.transitionDelay=(i*90)+'ms';
+      const result = await response.json();
+      if (!response.ok || result.accepted !== true) throw new Error('Not accepted');
+      status.textContent = 'Thank you. Your introduction has been received. We will be in touch personally.';
+      form.reset();
+    } catch {
+      status.classList.add('is-error');
+      status.textContent = 'We could not confirm delivery. Your details remain here. Please try again.';
+    } finally {
+      clearTimeout(timeout);
+      sending = false;
+      submit.disabled = false;
+      submit.innerHTML = 'Send introduction <span aria-hidden="true">↗</span>';
+    }
   });
 
-  /* Cursor-aware tilt on season cards */
-  var tiltCards=document.querySelectorAll('.season-card');
-  var supportsHover=window.matchMedia('(hover: hover)').matches;
-  if(tiltCards.length&&supportsHover&&!reduceMotion){
-    tiltCards.forEach(function(card){
-      var image=card.querySelector('.season-image');
-      card.addEventListener('mousemove',function(event){
-        var rect=card.getBoundingClientRect();
-        var x=(event.clientX-rect.left)/rect.width-0.5;
-        var y=(event.clientY-rect.top)/rect.height-0.5;
-        var tiltX=(y*-6).toFixed(2);
-        var tiltY=(x*8).toFixed(2);
-        image.style.transform='rotateX('+tiltX+'deg) rotateY('+tiltY+'deg) scale(1.03)';
+  // Progressive enhancement: failure to load either library leaves a complete page.
+  if (!window.gsap || !window.ScrollTrigger) return;
+  const { gsap, ScrollTrigger } = window;
+  gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.config({ ignoreMobileResize: true });
+  const media = gsap.matchMedia();
+  media.add({ desktop: '(min-width: 701px)', mobile: '(max-width: 700px)', reduce: '(prefers-reduced-motion: reduce)' }, context => {
+    if (context.conditions.reduce) return;
+    const desktop = context.conditions.desktop;
+    document.documentElement.classList.add('motion-enabled');
+    // One opening gesture: the photograph settles into an ivory frame.
+    // The page keeps its native scroll position and text never disappears on scroll.
+    if (desktop) {
+      gsap.fromTo('.arrival-copy > *', { y: 18, opacity: 0 }, {
+        y: 0, opacity: 1, stagger: .12, duration: 1.1, ease: 'power2.out'
       });
-      card.addEventListener('mouseleave',function(){
-        image.style.transform='rotateX(0deg) rotateY(0deg) scale(1)';
+      gsap.to('.arrival-frame', { '--frame': '3.5vw', ease: 'none', scrollTrigger: {
+        trigger: '.arrival', start: 'top top', end: 'bottom bottom', scrub: .45
+      }});
+      gsap.fromTo('.arrival-image img', { scale: 1.045 }, { scale: 1, ease: 'none', scrollTrigger: {
+        trigger: '.arrival', start: 'top top', end: 'bottom bottom', scrub: .45
+      }});
+      $$('[data-reveal]').forEach(element => {
+        gsap.fromTo(element, { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: .9, ease: 'power2.out', scrollTrigger: {
+          trigger: element, start: 'top 94%', once: true
+        }});
       });
-    });
-  }
-}());
+      $$('.image-reveal').forEach(element => {
+        const image = $('img', element);
+        gsap.fromTo(image, { scale: 1.035 }, { scale: 1, ease: 'none', scrollTrigger: {
+          trigger: element, start: 'top bottom', end: 'bottom top', scrub: .6
+        }});
+      });
+    }
+    ScrollTrigger.refresh();
+    return () => { document.documentElement.classList.remove('motion-enabled'); };
+  });
+  window.addEventListener('load', () => ScrollTrigger.refresh(), { once: true });
+  document.fonts?.ready.then(() => ScrollTrigger.refresh());
+})();
